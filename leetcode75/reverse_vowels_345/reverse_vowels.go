@@ -1,7 +1,5 @@
 package reversevowels345
 
-import "fmt"
-
 // Set not available in golang :(
 type Set struct {
 	elements map[byte]struct{}
@@ -16,7 +14,6 @@ func createSet(slice []byte) *Set {
 	set := &Set{
 		elements: make(map[byte]struct{}),
 	}
-	fmt.Println(set)
 	for _, element := range slice {
 		set.elements[element] = struct{}{}
 	}
