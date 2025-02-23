@@ -1,7 +1,6 @@
 package maxvowel1456
 
 func maxVowels(s string, k int) int {
-	prepareVowelSet()
 	windowStart := 0
 	windowEnd := k - 1
 
@@ -33,14 +32,17 @@ func getNumVowels(windowStart, windowEnd int, s string) int {
 	return numVowels
 }
 
-var vowelSet = make(map[byte]struct{})
-
-func prepareVowelSet() {
-	vowelsArr := [10]byte{'A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u'}
-	for _, vowel := range vowelsArr {
-		vowelSet[vowel] = struct{}{}
-	}
-
+var vowelSet = map[byte]struct{}{
+	'A': {},
+	'E': {},
+	'I': {},
+	'O': {},
+	'U': {},
+	'a': {},
+	'e': {},
+	'i': {},
+	'o': {},
+	'u': {},
 }
 
 func isVowel(b byte) bool {
