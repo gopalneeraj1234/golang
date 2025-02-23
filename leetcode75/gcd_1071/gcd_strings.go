@@ -1,5 +1,6 @@
 package gcd_1071
 
+// conditional operator not supported in golang
 func getMinStr(str1 string, str2 string) string {
 	if len(str1) < len(str2) {
 		return str1

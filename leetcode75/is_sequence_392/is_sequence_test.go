@@ -1,7 +1,6 @@
 package issequence392
 
 import (
-	"fmt"
 	"math"
 	"testing"
 
@@ -50,9 +49,6 @@ func TestIsSubSequenceLong(t *testing.T) {
 	for range 100 {
 		searchStr = append(searchStr, rune('a'+rand.Intn(25)))
 	}
-
-	fmt.Println(string(searchStr))
-	fmt.Println(string(longStr))
 	got := isSubsequence(string(searchStr), string(longStr))
 	want := true
 
