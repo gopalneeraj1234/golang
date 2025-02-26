@@ -1,9 +1,8 @@
-package deletemiddle2095
+package delete_middle_2095
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+import "leetcode75/utils"
+
+type ListNode = utils.ListNode
 
 /**
  * Definition for singly-linked list.
