@@ -6,13 +6,13 @@ import (
 )
 
 type StackElement struct {
-	numRep int
-	ch     rune
-	isChar bool
+	repetitions int
+	ch          rune
+	isChar      bool
 }
 
-func (s *StackElement) getNum() int {
-	return s.numRep
+func (s *StackElement) getRepetitions() int {
+	return s.repetitions
 }
 
 func (s *StackElement) getChar() rune {
@@ -47,11 +47,11 @@ func (s *Stack) push(element interface{}) {
 		}
 	case int:
 		if topStackElement != nil && !topStackElement.isChar {
-			topStackElement.numRep = topStackElement.numRep*10 + e
+			topStackElement.repetitions = topStackElement.repetitions*10 + e
 		} else {
 			stackElement = &StackElement{
-				numRep: e,
-				isChar: false,
+				repetitions: e,
+				isChar:      false,
 			}
 		}
 	}
@@ -91,15 +91,15 @@ func decodeString(s string) string {
 		if unicode.IsDigit(ch) {
 			elementStack.push(int(ch - '0'))
 		} else if ch == ']' {
-			tempSlice := []rune{}
+			var poppedElements []rune
 			for elementStack.peek().getChar() != '[' {
-				tempSlice = append(tempSlice, elementStack.pop().getChar())
+				poppedElements = append(poppedElements, elementStack.pop().getChar())
 			}
 			elementStack.pop() // '['
-			count := elementStack.pop().getNum()
+			count := elementStack.pop().getRepetitions()
 			for range count {
-				for i := len(tempSlice) - 1; i >= 0; i-- {
-					elementStack.push(tempSlice[i])
+				for i := len(poppedElements) - 1; i >= 0; i-- {
+					elementStack.push(poppedElements[i])
 				}
 			}
 		} else {
@@ -107,11 +107,11 @@ func decodeString(s string) string {
 		}
 	}
 
-	retSlice := make([]rune, elementStack.size())
+	retElements := make([]rune, elementStack.size())
 	index := 0
 	for sItem := range elementStack.Items() {
-		retSlice[index] = sItem.ch
+		retElements[index] = sItem.ch
 		index++
 	}
-	return string(retSlice)
+	return string(retElements)
 }

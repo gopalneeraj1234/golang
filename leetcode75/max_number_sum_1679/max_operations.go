@@ -42,40 +42,40 @@ func createSet() *Set {
 // Create a set with numbers
 // For each number in nums remove them from set if there is a match that leads to 0
 func maxOperations(nums []int, k int) int {
-	numMap := make(map[int]Set)
+	numToIndexes := make(map[int]Set)
 	for i, num := range nums {
-		currVals, found := numMap[num]
+		currVals, found := numToIndexes[num]
 		if !found {
 			currVals := createSet()
 			currVals.append(i)
-			numMap[num] = *currVals
+			numToIndexes[num] = *currVals
 		} else {
 			currVals.append(i)
 		}
 	}
 
-	numOps := 0
+	operations := 0
 	removedIndexes := createSet()
 
 	for i, num := range nums {
-		matchedIndexSet, found := numMap[k-num]
+		matchedIndexSet, found := numToIndexes[k-num]
 
 		if !removedIndexes.contains(i) && found {
 			removed, removedIndex := matchedIndexSet.removeNotEqualElement(i)
 			if removed {
 				removedIndexes.append(removedIndex)
 				if matchedIndexSet.size() == 0 {
-					delete(numMap, k-num)
+					delete(numToIndexes, k-num)
 				}
-				currIndexSet := numMap[num]
+				currIndexSet := numToIndexes[num]
 				currIndexSet.remove(i)
 				if currIndexSet.size() == 0 {
-					delete(numMap, num)
+					delete(numToIndexes, num)
 				}
 				removedIndexes.append(i)
-				numOps++
+				operations++
 			}
 		}
 	}
-	return numOps
+	return operations
 }

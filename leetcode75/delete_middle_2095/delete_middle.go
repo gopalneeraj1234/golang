@@ -1,8 +1,8 @@
 package delete_middle_2095
 
-import "leetcode75/utils"
+import "leetcode75/linkedlist"
 
-type ListNode = utils.ListNode
+type ListNode = linkedlist.ListNode
 
 /**
  * Definition for singly-linked list.
@@ -23,16 +23,14 @@ func deleteMiddle(head *ListNode) *ListNode {
 		prevSlowPtr = slowPtr
 		slowPtr = slowPtr.Next
 		fastPtr = fastPtr.Next
-		if fastPtr != nil {
-			fastPtr = fastPtr.Next
-		} else {
+		if fastPtr == nil {
 			break
 		}
+		fastPtr = fastPtr.Next
 	}
 	if prevSlowPtr == nil {
 		return nil
-	} else {
-		prevSlowPtr.Next = slowPtr.Next
 	}
+	prevSlowPtr.Next = slowPtr.Next
 	return head
 }

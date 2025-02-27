@@ -22,7 +22,6 @@ func pivotIndex(nums []int) int {
 	}
 	if leftSum == rightSum {
 		return currIndex
-	} else {
-		return -1
 	}
+	return -1
 }

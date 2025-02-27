@@ -4,9 +4,8 @@ package gcd_1071
 func getMinStr(str1 string, str2 string) string {
 	if len(str1) < len(str2) {
 		return str1
-	} else {
-		return str2
 	}
+	return str2
 }
 func gcdOfStrings(str1 string, str2 string) string {
 	minStr := getMinStr(str1, str2)

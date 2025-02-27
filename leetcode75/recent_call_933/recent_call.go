@@ -1,36 +1,32 @@
 package recentcall933
 
-type Queue struct {
-	elements []int
-}
+type Queue []int
 
 func (q Queue) isEmpty() bool {
 	return q.size() == 0
 }
 
 func (q Queue) size() int {
-	return len(q.elements)
+	return len(q)
 }
 
 func (q *Queue) add(time int) {
-	q.elements = append(q.elements, time)
+	*q = append(*q, time)
 }
 
 func (q *Queue) head() int {
-	return q.elements[0]
+	return (*q)[0]
 }
 
 func (q *Queue) remove() int {
-	retVal := q.elements[0]
-	q.elements = q.elements[1:len(q.elements)]
+	retVal := (*q)[0]
+	*q = (*q)[1:len(*q)]
 	return retVal
 }
 
 func NewQueue() *Queue {
-	q := &Queue{
-		elements: make([]int, 0),
-	}
-	return q
+	q := make(Queue, 0)
+	return &q
 }
 
 type RecentCounter struct {

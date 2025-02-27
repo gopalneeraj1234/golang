@@ -44,18 +44,18 @@ func findDifference(nums1 []int, nums2 []int) [][]int {
 	nums1Set := createSetFromSlice(nums1)
 	nums2Set := createSetFromSlice(nums2)
 
-	retSlice := make([][]int, 2)
+	diffArrays := make([][]int, 2)
 	for num1 := range nums1Set.Items() {
 		if !nums2Set.contains(num1) {
-			retSlice[0] = append(retSlice[0], num1)
+			diffArrays[0] = append(diffArrays[0], num1)
 		}
 
 	}
 
 	for num2 := range nums2Set.Items() {
 		if !nums1Set.contains(num2) {
-			retSlice[1] = append(retSlice[1], num2)
+			diffArrays[1] = append(diffArrays[1], num2)
 		}
 	}
-	return retSlice
+	return diffArrays
 }

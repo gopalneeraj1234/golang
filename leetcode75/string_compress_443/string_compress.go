@@ -79,8 +79,8 @@ func compress(chars []byte) int {
 		if rep == 1 {
 			continue
 		}
-		repArr := strconv.Itoa(rep)
-		for _, repChar := range repArr {
+		repStr := strconv.Itoa(rep)
+		for _, repChar := range repStr {
 			chars[index] = byte(repChar)
 			index++
 		}

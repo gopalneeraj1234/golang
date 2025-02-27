@@ -4,32 +4,32 @@ func maxVowels(s string, k int) int {
 	windowStart := 0
 	windowEnd := k - 1
 
-	numVowels := getNumVowels(windowStart, windowEnd, s)
-	retMax := numVowels
+	vowels := getvowels(windowStart, windowEnd, s)
+	retMax := vowels
 	windowStart++
 	windowEnd++
 	for windowEnd < len(s) {
 		if isVowel(s[windowStart-1]) {
-			numVowels--
+			vowels--
 		}
 		if isVowel(s[windowEnd]) {
-			numVowels++
+			vowels++
 		}
-		retMax = max(numVowels, retMax)
+		retMax = max(vowels, retMax)
 		windowEnd++
 		windowStart++
 	}
 	return retMax
 }
 
-func getNumVowels(windowStart, windowEnd int, s string) int {
-	numVowels := 0
+func getvowels(windowStart, windowEnd int, s string) int {
+	vowels := 0
 	for i := windowStart; i <= windowEnd; i++ {
 		if isVowel(s[i]) {
-			numVowels++
+			vowels++
 		}
 	}
-	return numVowels
+	return vowels
 }
 
 var vowelSet = map[byte]struct{}{

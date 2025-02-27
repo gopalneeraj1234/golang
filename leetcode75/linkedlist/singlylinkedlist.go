@@ -1,4 +1,14 @@
-package utils
+package linkedlist
+
+import (
+	"strconv"
+	"strings"
+)
+
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
 
 func CreateLinkedList(nums []int) *ListNode {
 	if len(nums) == 0 {
@@ -34,7 +44,16 @@ func IsEqual(head1 *ListNode, head2 *ListNode) bool {
 	}
 	if temp1 == nil && temp2 == nil {
 		return true
-	} else {
-		return false
 	}
+	return false
+}
+
+func (l ListNode) String() string {
+	var sb strings.Builder
+	for l.Next != nil {
+		sb.WriteString(strconv.Itoa(l.Val) + " -> ")
+		l = *l.Next
+	}
+	sb.WriteString(strconv.Itoa(l.Val))
+	return sb.String()
 }

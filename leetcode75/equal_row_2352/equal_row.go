@@ -10,32 +10,32 @@ func getStringFromArray(arr []int, sep string) string {
 		return ""
 	}
 
-	strSlice := make([]string, len(arr))
+	strs := make([]string, len(arr))
 	for i, num := range arr {
-		strSlice[i] = strconv.Itoa(num)
+		strs[i] = strconv.Itoa(num)
 	}
-	return strings.Join(strSlice, sep)
+	return strings.Join(strs, sep)
 }
 
 func equalPairs(grid [][]int) int {
 	rowLen := len(grid)
 	colLen := len(grid[0])
-	rowMap := make(map[string]int)
-	for _, rowSlice := range grid {
-		rowMap[getStringFromArray(rowSlice, ",")]++
+	rowToCount := make(map[string]int)
+	for _, gridRow := range grid {
+		rowToCount[getStringFromArray(gridRow, ",")]++
 	}
 
-	numMatches := 0
-	for col := 0; col < colLen; col++ {
-		colSlice := make([]int, rowLen)
-		for row := 0; row < rowLen; row++ {
-			colSlice[row] = grid[row][col]
+	matches := 0
+	for col := range colLen {
+		gridColumn := make([]int, rowLen)
+		for row := range rowLen {
+			gridColumn[row] = grid[row][col]
 		}
-		rowMatches, found := rowMap[getStringFromArray(colSlice, ",")]
+		rowMatches, found := rowToCount[getStringFromArray(gridColumn, ",")]
 		if found {
-			numMatches += rowMatches
+			matches += rowMatches
 		}
 	}
 
-	return numMatches
+	return matches
 }

@@ -27,7 +27,7 @@ func resolveCollision(asteroidStack *[]int) {
 }
 
 func asteroidCollision(asteroids []int) []int {
-	asteroidStack := []int{}
+	var asteroidStack []int
 
 	for _, asteroid := range asteroids {
 		asteroidStack = append(asteroidStack, asteroid)
