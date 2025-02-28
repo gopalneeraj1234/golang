@@ -16,6 +16,20 @@ func NewTreeNode(val int) *TreeNode {
 	return &TreeNode{val, nil, nil}
 }
 
+func (t *TreeNode) GetNodeWithVal(val int) (*TreeNode, bool) {
+	if t == nil {
+		return nil, false
+	}
+	if t.Val == val {
+		return t, true
+	}
+	node, leftFound := t.Left.GetNodeWithVal(val)
+	if !leftFound {
+		return t.Right.GetNodeWithVal(val)
+	}
+	return node, leftFound
+}
+
 func CreateBinaryTree(nums []int) *TreeNode {
 	return createBinaryTreeRecur(nums, 0)
 }
