@@ -1,8 +1,8 @@
 package delete_middle_2095
 
-import "leetcode75/linkedlist"
+import "leetcode75/list"
 
-type ListNode = linkedlist.ListNode
+type ListNode = list.ListNode
 
 /**
  * Definition for singly-linked list.

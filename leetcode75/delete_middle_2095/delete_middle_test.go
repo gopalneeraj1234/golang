@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"testing"
 
-	"leetcode75/linkedlist"
+	"leetcode75/list"
 )
 
 var middleNodeTests = []struct {
@@ -20,10 +20,10 @@ func TestDeleteMiddle(t *testing.T) {
 
 	for i, tt := range middleNodeTests {
 		t.Run("Test"+strconv.Itoa(i), func(t *testing.T) {
-			got := deleteMiddle(linkedlist.CreateLinkedList(tt.input))
-			wantList := linkedlist.CreateLinkedList(tt.want)
+			got := deleteMiddle(list.CreateLinkedList(tt.input))
+			wantList := list.CreateLinkedList(tt.want)
 			t.Log(wantList)
-			if !linkedlist.IsEqual(got, wantList) {
+			if !list.IsEqual(got, wantList) {
 				t.Errorf("Got %q, want %q", got, wantList)
 			}
 		})

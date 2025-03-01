@@ -1,11 +1,11 @@
 package maxtwinsum2130
 
 import (
-	"leetcode75/linkedlist"
+	"leetcode75/list"
 	"math"
 )
 
-type ListNode = linkedlist.ListNode
+type ListNode = list.ListNode
 
 type Stack []int
 

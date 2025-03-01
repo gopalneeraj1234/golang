@@ -1,7 +1,7 @@
 package maxtwinsum2130
 
 import (
-	"leetcode75/linkedlist"
+	"leetcode75/list"
 	"testing"
 )
 
@@ -18,7 +18,7 @@ var maxTwinTests = []struct {
 func TestPairSum(t *testing.T) {
 	for _, tt := range maxTwinTests {
 		t.Run(tt.name, func(t *testing.T) {
-			inputList := linkedlist.CreateLinkedList(tt.input)
+			inputList := list.CreateLinkedList(tt.input)
 			got := pairSum(inputList)
 			if got != tt.want {
 				t.Errorf("pairSum(%q)=%d, want=%d", inputList, got, tt.want)

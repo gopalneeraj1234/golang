@@ -1,7 +1,7 @@
 package reservelist206
 
 import (
-	"leetcode75/linkedlist"
+	"leetcode75/list"
 	"testing"
 )
 
@@ -17,10 +17,10 @@ var reverseListTestInputs = []struct {
 func TestReverseList(t *testing.T) {
 	for _, tt := range reverseListTestInputs {
 		t.Run(tt.name, func(t *testing.T) {
-			inputList := linkedlist.CreateLinkedList(tt.input)
+			inputList := list.CreateLinkedList(tt.input)
 			gotList := reverseList(inputList)
-			wantList := linkedlist.CreateLinkedList(tt.want)
-			if !linkedlist.IsEqual(gotList, wantList) {
+			wantList := list.CreateLinkedList(tt.want)
+			if !list.IsEqual(gotList, wantList) {
 				t.Errorf("reverseList(%q) = %q, want = %q", inputList, gotList, wantList)
 			}
 		})

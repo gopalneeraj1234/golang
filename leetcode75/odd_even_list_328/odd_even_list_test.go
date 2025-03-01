@@ -1,7 +1,7 @@
 package oddevenlist328
 
 import (
-	"leetcode75/linkedlist"
+	"leetcode75/list"
 	"strconv"
 	"testing"
 )
@@ -23,9 +23,9 @@ func TestOddEvenList(t *testing.T) {
 
 	for i, tt := range oddEvenTests {
 		t.Run("Test"+strconv.Itoa(i), func(t *testing.T) {
-			gotList := oddEvenList(linkedlist.CreateLinkedList(tt.input))
-			wantList := linkedlist.CreateLinkedList(tt.want)
-			if !linkedlist.IsEqual(gotList, wantList) {
+			gotList := oddEvenList(list.CreateLinkedList(tt.input))
+			wantList := list.CreateLinkedList(tt.want)
+			if !list.IsEqual(gotList, wantList) {
 				t.Errorf("Got %q, Want %q", gotList, wantList)
 			}
 		})

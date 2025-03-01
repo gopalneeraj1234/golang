@@ -1,8 +1,8 @@
 package oddevenlist328
 
-import "leetcode75/linkedlist"
+import "leetcode75/list"
 
-type ListNode = linkedlist.ListNode
+type ListNode = list.ListNode
 
 func oddEvenList(head *ListNode) *ListNode {
 	if head == nil {
