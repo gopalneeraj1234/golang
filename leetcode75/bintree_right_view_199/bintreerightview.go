@@ -13,11 +13,11 @@ func rightSideView(root *TreeNode) []int {
 	if root == nil {
 		return rightview
 	}
-	q := list.NewQueue()
+	q := list.NewQueue[TreeNode]()
 	q.Add(root)
 	rightview = append(rightview, q.GetLast().Val)
 	for !q.IsEmpty() {
-		tempList := list.NewQueue()
+		tempList := list.NewQueue[TreeNode]()
 
 		for !q.IsEmpty() {
 			curr := q.Remove()

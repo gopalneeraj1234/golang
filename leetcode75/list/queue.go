@@ -2,42 +2,44 @@ package list
 
 import (
 	"iter"
-	"leetcode75/tree"
 )
 
-type TreeNode = tree.TreeNode
-type Queue []TreeNode
+type Queue[T comparable] struct {
+	elements []T
+}
 
-func (q *Queue) IsEmpty() bool {
+//type Queue []TreeNode
+
+func (q *Queue[T]) IsEmpty() bool {
 	return (*q).Size() == 0
 }
 
-func (q *Queue) Add(node *TreeNode) {
-	*q = append(*q, *node)
+func (q *Queue[T]) Add(node *T) {
+	q.elements = append(q.elements, *node)
 }
 
-func (q *Queue) Remove() *TreeNode {
-	node := (*q)[0]
-	(*q) = (*q)[1:]
+func (q *Queue[T]) Remove() *T {
+	node := q.elements[0]
+	q.elements = q.elements[1:]
 	return &node
 }
 
-func (q *Queue) GetLast() *TreeNode {
-	return &(*q)[len(*q)-1]
+func (q *Queue[T]) GetLast() *T {
+	return &q.elements[len(q.elements)-1]
 }
-func (q *Queue) Size() int {
-	return len(*q)
+func (q *Queue[T]) Size() int {
+	return len(q.elements)
 }
 
-func (q *Queue) AddAll(anotherQ *Queue) {
+func (q *Queue[T]) AddAll(anotherQ *Queue[T]) {
 	for node := range anotherQ.Iter() {
 		q.Add(&node)
 	}
 }
 
-func (q *Queue) Iter() iter.Seq[TreeNode] {
-	return func(yield func(TreeNode) bool) {
-		for _, element := range *q {
+func (q *Queue[T]) Iter() iter.Seq[T] {
+	return func(yield func(T) bool) {
+		for _, element := range q.elements {
 			if !yield(element) {
 				return
 			}
@@ -45,6 +47,8 @@ func (q *Queue) Iter() iter.Seq[TreeNode] {
 	}
 }
 
-func NewQueue() *Queue {
-	return &Queue{}
+func NewQueue[T comparable]() *Queue[T] {
+	return &Queue[T]{
+		elements: []T{},
+	}
 }

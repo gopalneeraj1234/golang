@@ -66,3 +66,33 @@ func createBinaryTreeRecur(nums []int, index int) *TreeNode {
 	root.Right = createBinaryTreeRecur(nums, 2*index+2)
 	return root
 }
+
+func GetSize(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+	return GetSize(root.Left) + GetSize(root.Right) + 1
+}
+
+func GetArray(root *TreeNode) []int {
+	if root == nil {
+		return []int{}
+	}
+	treeArr := make([]int, 0, GetSize(root))
+
+	treeToArr(root, 0, &treeArr)
+	return treeArr
+}
+
+func treeToArr(root *TreeNode, rootIndex int, treeArr *[]int) {
+	if len(*treeArr) <= rootIndex {
+		*treeArr = (*treeArr)[:rootIndex+1]
+	}
+	(*treeArr)[rootIndex] = root.Val
+	if root.Left != nil {
+		treeToArr(root.Left, 2*rootIndex+1, treeArr)
+	}
+	if root.Right != nil {
+		treeToArr(root.Right, 2*rootIndex+2, treeArr)
+	}
+}
