@@ -1,0 +1,15 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "wordcounter",
+    srcs = ["wordcounter.go"],
+    importpath = "ccwc/wordcounter",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "wordcounter_test",
+    srcs = ["wordcounter_test.go"],
+    embed = [":wordcounter"],
+    data = glob(["testcases/**"])
+)

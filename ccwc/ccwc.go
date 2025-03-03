@@ -1,7 +1,7 @@
 package main
 
 import (
-	counter "ccwc/wordcounter"
+	"ccwc/wordcounter"
 	"flag"
 	"fmt"
 	"log"
@@ -15,12 +15,21 @@ func main() {
 		return
 	}
 	filename := filenames[0]
-	wordCounter := counter.NewWordCounter(filename)
+	wordCounter := wordcounter.NewWordCounter(filename)
+	allCounts, err := wordCounter.Count()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	if userFlags.IsCharCount() {
-		charCount, err := wordCounter.CountChars()
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmt.Printf("\t%d %s\n", charCount, filename)
+		fmt.Printf("\t%d %s\n", allCounts.GetCharCount(), filename)
+	}
+
+	if userFlags.IsLineCount() {
+		fmt.Printf("\t%d %s\n", allCounts.GetLineCount(), filename)
+	}
+
+	if userFlags.IsWordCount() {
+		fmt.Printf("\t%d %s\n", allCounts.GetWordCount(), filename)
 	}
 }
